@@ -42,10 +42,20 @@ public class ProblemSolutions {
         int n = values.length;
 
         for (int i = 0; i < n - 1; i++) {
-
-            // YOU CODE GOES HERE -- COMPLETE THE INNER LOOP OF THIS
-            // "SELECTION SORT" ALGORITHM.
-            // DO NOT FORGET TO ADD YOUR NAME / SECTION ABOVE
+            int index = i;  // To track index of min (or max) element
+            for(int j=i+1; j<n;j++){
+                // If ascending, find the minimum
+                if(ascending && values[j] < values[index]){
+                    index = j;
+                // If descending, find the maximum
+                } else if(!ascending && values[j] > values[index]){
+                    index = j;
+                }
+            }
+            // Swap the selected value with the current position
+            int temp = values[i];
+            values[i] = values[index];
+            values[index] = temp;
 
         }
 
