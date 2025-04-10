@@ -42,13 +42,13 @@ public class ProblemSolutions {
         int n = values.length;
 
         for (int i = 0; i < n - 1; i++) {
-            int index = i;  // To track index of min (or max) element
-            for(int j=i+1; j<n;j++){
+            int index = i; // To track index of min (or max) element
+            for (int j = i + 1; j < n; j++) {
                 // If ascending, find the minimum
-                if(ascending && values[j] < values[index]){
+                if (ascending && values[j] < values[index]) {
                     index = j;
-                // If descending, find the maximum
-                } else if(!ascending && values[j] > values[index]){
+                    // If descending, find the maximum
+                } else if (!ascending && values[j] > values[index]) {
                     index = j;
                 }
             }
@@ -118,7 +118,45 @@ public class ProblemSolutions {
         // TO CODE WITH A SPACE COMPLEXITY OF O(N LOG N), WHICH IS FINE FOR PURPOSES
         // OF THIS PROGRAMMING EXERCISES.
 
-        return;
+        int[] result = new int[right - left + 1]; // holds merged output
+        int i = left; // pointer for left half
+        int j = mid + 1; // pointer for right half
+        int r = 0; // pointer for result array
+
+        // Go through both halves and merge into result
+        while (i <= mid && j <= right) {
+            // If current left is divisible by k, add it
+            if (arr[i] % k == 0) {
+                result[r++] = arr[i++];
+            }
+            // If current right is divisible by k, add it
+            else if (arr[j] % k == 0) {
+                result[r++] = arr[j++];
+            }
+            // Neither divisible — add the smaller one
+            else {
+                if (arr[i] <= arr[j]) {
+                    result[r++] = arr[i++];
+                } else {
+                    result[r++] = arr[j++];
+                }
+            }
+        }
+
+        // Add any remaining elements from the left half
+        while (i <= mid) {
+            result[r++] = arr[i++];
+        }
+
+        // Add any remaining elements from the right half
+        while (j <= right) {
+            result[r++] = arr[j++];
+        }
+
+        // Copy merged result back to original array
+        for (int a = 0; a < result.length; a++) {
+            arr[left + a] = result[a];
+        }
 
     }
 
