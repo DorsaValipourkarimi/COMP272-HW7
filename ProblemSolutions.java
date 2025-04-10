@@ -1,6 +1,6 @@
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Dorsa Valipourkarimi / COMP 272 002
  *
  *   This java file contains the problem solutions for the methods selectionSort,
  *   mergeSortDivisibleByKFirst, asteroidsDestroyed, and numRescueCanoes methods.
@@ -192,9 +192,21 @@ public class ProblemSolutions {
 
     public static int numRescueSleds(int[] people, int limit) {
 
-        // YOUR CODE GOES HERE, CONSIDER USING ARRAYS.SORT
+        Arrays.sort(people);
+        int sleds = 0;
+        int light = 0;
+        int heavy = people.length - 1;
 
-        return -1;
+        while(light <= heavy){
+            if(people[light]+people[heavy] <= limit){
+                light++;
+                heavy--;
+            } else{
+                heavy--;
+            }
+            sleds++;
+        }
+        return sleds;
 
     }
 
